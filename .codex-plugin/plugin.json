@@ -1,37 +1,34 @@
 {
-  "name": "neurodivergent",
-  "version": "1.0.0",
-  "description": "Diagnosis-shaped neurodivergent cognition modes for Codex, bundled as focused skills for ADHD, autism, and AuDHD software engineering workflows.",
-  "author": {
-    "name": "Bintang"
-  },
-  "license": "MIT",
-  "keywords": [
-    "neurodivergent",
-    "adhd",
-    "autism",
-    "audhd",
-    "codex",
-    "skills",
-    "cognition",
-    "software-engineering"
-  ],
-  "skills": "./skills/",
-  "interface": {
-    "displayName": "Neurodivergent",
-    "shortDescription": "ADHD, autism, and AuDHD cognition modes for Codex.",
-    "longDescription": "Adds three diagnosis-shaped coding cognition modes to Codex: ADHD for divergent momentum and hyperfocus sprints, autism for systemizing precision and invariant tracking, and AuDHD for combined fast branching with strict correctness control.",
-    "developerName": "Bintang",
-    "category": "Productivity",
-    "capabilities": [
-      "Read",
-      "Write"
+    "name": "neurodivergent",
+    "version": "1.0.0",
+    "description": "Diagnosis-shaped neurodivergent cognition modes for Codex, bundled as focused skills for ADHD, autism, and AuDHD software engineering workflows.",
+    "author": {
+        "name": "Bintang"
+    },
+    "license": "MIT",
+    "keywords": [
+        "neurodivergent",
+        "adhd",
+        "autism",
+        "audhd",
+        "codex",
+        "skills",
+        "cognition",
+        "software-engineering"
     ],
-    "defaultPrompt": [
-      "$adhd debug this with fast branching, weird-path probes, and a parking lot.",
-      "$autism review this change for invariants, ambiguity, edge cases, and correctness.",
-      "$audhd implement this with fast branching, explicit rules, and one coherent verified patch."
-    ],
-    "brandColor": "#7C3AED"
-  }
+    "skills": "./skills/",
+    "interface": {
+        "displayName": "Neurodivergent",
+        "shortDescription": "ADHD, autism, and AuDHD cognition modes for Codex.",
+        "longDescription": "Adds three diagnosis-shaped coding cognition modes to Codex: ADHD for divergent momentum and hyperfocus sprints, autism for systemizing precision and invariant tracking, and AuDHD for combined fast branching with strict correctness control.",
+        "developerName": "Bintang",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "defaultPrompt": [
+            "$adhd debug this with fast branching, weird-path probes, and a parking lot.",
+            "$autism review this change for invariants, ambiguity, edge cases, and correctness.",
+            "$audhd implement this with fast branching, explicit rules, and one coherent verified patch."
+        ],
+        "brandColor": "#7C3AED"
+    }
 }

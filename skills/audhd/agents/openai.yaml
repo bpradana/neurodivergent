@@ -1,8 +1,8 @@
 interface:
-  display_name: "AuDHD"
-  short_description: "AuDHD cognition mode for Codex."
-  brand_color: "#7C3AED"
-  default_prompt: "Use $audhd for this task."
+    display_name: "AuDHD"
+    short_description: "AuDHD cognition mode for Codex."
+    brand_color: "#7C3AED"
+    default_prompt: "Use $audhd for this task."
 
 policy:
-  allow_implicit_invocation: true
+    allow_implicit_invocation: false

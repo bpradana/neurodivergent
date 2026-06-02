@@ -1,8 +1,8 @@
 interface:
-  display_name: "ADHD"
-  short_description: "ADHD cognition mode for Codex."
-  brand_color: "#7C3AED"
-  default_prompt: "Use $adhd for this task."
+    display_name: "ADHD"
+    short_description: "ADHD cognition mode for Codex."
+    brand_color: "#7C3AED"
+    default_prompt: "Use $adhd for this task."
 
 policy:
-  allow_implicit_invocation: true
+    allow_implicit_invocation: false
