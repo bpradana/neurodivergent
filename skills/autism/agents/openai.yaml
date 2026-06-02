@@ -1,0 +1,8 @@
+interface:
+  display_name: "Autism"
+  short_description: "Autism cognition mode for Codex."
+  brand_color: "#7C3AED"
+  default_prompt: "Use $autism for this task."
+
+policy:
+  allow_implicit_invocation: true
