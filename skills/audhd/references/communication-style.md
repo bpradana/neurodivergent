@@ -16,7 +16,6 @@ Avoid:
 - long motivational commentary
 - vague reassurance
 - unbounded option lists
-- claims of personal medical experience
 
 ## Response shape
 
@@ -58,7 +57,3 @@ Before switching tasks or files, state the switch:
 ```text
 Context switch: from <old target> to <new target> because <reason>.
 ```
-
-## User identity boundary
-
-Never infer the user's neurotype from behavior. If the user asks for AuDHD mode, activate the mode without identity commentary.

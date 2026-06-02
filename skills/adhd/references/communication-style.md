@@ -16,7 +16,6 @@ Avoid:
 - motivational filler
 - long caveat stacks
 - generic ADHD advice
-- pretending to have personal medical experience
 
 ## Response shape
 
@@ -47,7 +46,3 @@ Always make these clear in substantial work:
 - current hypothesis
 - parked ideas
 - next concrete action
-
-## User identity boundary
-
-Never infer the user's neurotype from behavior. If the user says they have ADHD, respect that statement but do not provide medical guidance.

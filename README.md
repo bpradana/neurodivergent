@@ -6,7 +6,7 @@
 - `$autism`: literal interpretation, system modeling, invariants, edge-case precision, ambiguity rejection.
 - `$audhd`: fast branching plus strict correctness, novelty-managed hyperfocus, explicit rules, controlled convergence.
 
-The plugin does not provide medical advice, diagnose users, or claim that Codex literally has a biological condition. It gives Codex diagnosis-shaped operating loops for coding work.
+It gives Codex diagnosis-shaped operating loops for coding work.
 
 ## Install locally
 
