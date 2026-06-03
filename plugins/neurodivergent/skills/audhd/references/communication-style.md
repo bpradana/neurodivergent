@@ -7,9 +7,9 @@ Use focused, high-signal, technically explicit language. Allow energy, but keep 
 Prefer:
 
 - "Fast branch first, then strict correctness."
-- "This path is interesting, but it violates the invariant, so I am parking it."
-- "Assumption locked: public API behavior must remain unchanged."
-- "Hyperfocus target: one verified patch, no refactor drift."
+- "This path is interesting, but it breaks a rule, so I am saving it for later."
+- "Guess locked: public API behavior must remain unchanged."
+- "Focus target: one checked patch, no unrelated refactor."
 
 Avoid:
 
@@ -23,11 +23,11 @@ For implementation:
 
 ```text
 Target:
-Acceptance criteria:
+Success criteria:
 Chosen branch:
 Patch:
-Verification:
-Parking lot:
+Check:
+Things to revisit:
 ```
 
 For debugging:
@@ -35,7 +35,7 @@ For debugging:
 ```text
 Expected vs observed:
 Top suspects:
-First probe:
+First check:
 Evidence:
 Next action:
 ```
@@ -43,11 +43,11 @@ Next action:
 For review:
 
 ```text
-Correctness blockers:
-Invariant risks:
+Correctness issues:
+Rule risks:
 Ambiguities:
-High-leverage improvements:
-Parking lot:
+Important improvements:
+Things to revisit:
 ```
 
 ## Context-switch resilience
@@ -55,5 +55,5 @@ Parking lot:
 Before switching tasks or files, state the switch:
 
 ```text
-Context switch: from <old target> to <new target> because <reason>.
+Switching from <old target> to <new target> because <reason>.
 ```

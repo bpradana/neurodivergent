@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plugin-local memory helpers for Neurodivergent Codex hooks."""
+"""Plugin-local saved notes for Neurodivergent Codex hooks."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 
-MODES = ("adhd", "autism", "audhd")
+STYLES = ("adhd", "autism", "audhd")
 MAX_ITEMS = 12
 MAX_EVENTS = 200
 
@@ -88,17 +88,17 @@ def prune_events(events_path: Path, limit: int = MAX_EVENTS) -> None:
     events_path.write_text("\n".join(lines[-limit:]) + "\n", encoding="utf-8")
 
 
-def detect_mode(prompt: str | None) -> str | None:
+def detect_style(prompt: str | None) -> str | None:
     if not prompt:
         return None
     lowered = prompt.lower()
-    for mode in MODES:
-        if re.search(rf"(?<![\w-])\${mode}(?![\w-])", lowered):
-            return mode
+    for style in STYLES:
+        if re.search(rf"(?<![\w-])\${style}(?![\w-])", lowered):
+            return style
     return None
 
 
-def ensure_state(data: dict[str, Any], hook_input: dict[str, Any], mode: str | None = None) -> dict[str, Any]:
+def ensure_state(data: dict[str, Any], hook_input: dict[str, Any], style: str | None = None) -> dict[str, Any]:
     cwd = hook_input.get("cwd")
     now = utc_now()
     state = {
@@ -109,18 +109,18 @@ def ensure_state(data: dict[str, Any], hook_input: dict[str, Any], mode: str | N
         "updated_at": now,
         "session_id": hook_input.get("session_id") or data.get("session_id"),
         "turn_id": hook_input.get("turn_id") or data.get("turn_id"),
-        "active_mode": mode or data.get("active_mode"),
-        "assumptions": list(data.get("assumptions") or []),
-        "parking_lot": list(data.get("parking_lot") or []),
-        "invariants": list(data.get("invariants") or []),
-        "verification_notes": list(data.get("verification_notes") or []),
-        "last_checkpoint": data.get("last_checkpoint"),
+        "active_style": style or data.get("active_style"),
+        "current_guesses": list(data.get("current_guesses") or []),
+        "things_to_revisit": list(data.get("things_to_revisit") or []),
+        "rules_to_keep": list(data.get("rules_to_keep") or []),
+        "checks_run": list(data.get("checks_run") or []),
+        "latest_note": data.get("latest_note"),
     }
     return trim_state(state)
 
 
 def trim_state(state: dict[str, Any]) -> dict[str, Any]:
-    for key in ("assumptions", "parking_lot", "invariants", "verification_notes"):
+    for key in ("current_guesses", "things_to_revisit", "rules_to_keep", "checks_run"):
         items = state.get(key)
         if isinstance(items, list):
             state[key] = dedupe_strings(items)[-MAX_ITEMS:]
@@ -152,24 +152,30 @@ def sanitize_text(text: str) -> str:
 
 def extract_sections(text: str | None) -> dict[str, list[str]]:
     result = {
-        "assumptions": [],
-        "parking_lot": [],
-        "invariants": [],
-        "verification_notes": [],
+        "current_guesses": [],
+        "things_to_revisit": [],
+        "rules_to_keep": [],
+        "checks_run": [],
     }
     if not text:
         return result
 
     heading_map = {
-        "assumption": "assumptions",
-        "assumptions": "assumptions",
-        "parking lot": "parking_lot",
-        "parked": "parking_lot",
-        "invariant": "invariants",
-        "invariants": "invariants",
-        "verification": "verification_notes",
-        "verification notes": "verification_notes",
-        "tests": "verification_notes",
+        "current guess": "current_guesses",
+        "current guesses": "current_guesses",
+        "guess": "current_guesses",
+        "guesses": "current_guesses",
+        "things to revisit": "things_to_revisit",
+        "revisit": "things_to_revisit",
+        "rule to keep": "rules_to_keep",
+        "rules to keep": "rules_to_keep",
+        "rule": "rules_to_keep",
+        "rules": "rules_to_keep",
+        "check run": "checks_run",
+        "checks run": "checks_run",
+        "check": "checks_run",
+        "checks": "checks_run",
+        "tests": "checks_run",
     }
     active: str | None = None
     for raw_line in text.splitlines():
@@ -181,7 +187,10 @@ def extract_sections(text: str | None) -> dict[str, list[str]]:
         if heading in heading_map:
             active = heading_map[heading]
             continue
-        inline = re.match(r"^(assumptions?|parking lot|parked|invariants?|verification(?: notes)?|tests)\s*:\s*(.+)$", heading)
+        inline = re.match(
+            r"^(current guesses?|guesses?|things to revisit|revisit|rules?(?: to keep)?|checks?(?: run)?|tests)\s*:\s*(.+)$",
+            heading,
+        )
         if inline:
             key = heading_map[inline.group(1)]
             result[key].append(inline.group(2))
@@ -202,24 +211,24 @@ def merge_sections(state: dict[str, Any], sections: dict[str, list[str]]) -> dic
 
 def update_from_prompt(hook_input: dict[str, Any]) -> dict[str, Any] | None:
     prompt = hook_input.get("prompt")
-    mode = detect_mode(prompt)
-    if not mode:
+    style = detect_style(prompt)
+    if not style:
         return None
     cwd = hook_input.get("cwd")
-    state = ensure_state(load_state(cwd), hook_input, mode)
-    state["last_checkpoint"] = f"{mode} mode requested"
+    state = ensure_state(load_state(cwd), hook_input, style)
+    state["latest_note"] = f"{style} requested"
     merge_sections(state, extract_sections(prompt))
     save_state(cwd, state)
-    append_event(cwd, compact_event(hook_input, "UserPromptSubmit", {"mode": mode}))
+    append_event(cwd, compact_event(hook_input, "UserPromptSubmit", {"style": style}))
     return state
 
 
 def snapshot(hook_input: dict[str, Any], event_name: str) -> dict[str, Any]:
     cwd = hook_input.get("cwd")
     state = ensure_state(load_state(cwd), hook_input)
-    state["last_checkpoint"] = f"{event_name} at {state['updated_at']}"
+    state["latest_note"] = f"{event_name} at {state['updated_at']}"
     save_state(cwd, state)
-    append_event(cwd, compact_event(hook_input, event_name, {"active_mode": state.get("active_mode")}))
+    append_event(cwd, compact_event(hook_input, event_name, {"active_style": state.get("active_style")}))
     return state
 
 
@@ -229,13 +238,13 @@ def update_from_stop(hook_input: dict[str, Any]) -> dict[str, Any]:
     last_message = hook_input.get("last_assistant_message")
     merge_sections(state, extract_sections(last_message))
     if last_message:
-        state["last_checkpoint"] = summarize_checkpoint(last_message)
+        state["latest_note"] = summarize_note(last_message)
     save_state(cwd, state)
-    append_event(cwd, compact_event(hook_input, "Stop", {"active_mode": state.get("active_mode")}))
+    append_event(cwd, compact_event(hook_input, "Stop", {"active_style": state.get("active_style")}))
     return state
 
 
-def summarize_checkpoint(text: str) -> str:
+def summarize_note(text: str) -> str:
     for line in text.splitlines():
         clean = sanitize_text(line)
         if clean:
@@ -257,19 +266,19 @@ def compact_event(hook_input: dict[str, Any], event_name: str, extra: dict[str, 
 
 def session_context(hook_input: dict[str, Any]) -> str | None:
     state = load_state(hook_input.get("cwd"))
-    if not state or not state.get("active_mode"):
+    if not state or not state.get("active_style"):
         return None
     lines = [
-        "Neurodivergent plugin-local memory loaded.",
-        f"Active mode: {state.get('active_mode')}",
+        "Neurodivergent plugin saved notes loaded.",
+        f"Active style: {state.get('active_style')}",
     ]
-    if state.get("last_checkpoint"):
-        lines.append(f"Last checkpoint: {state['last_checkpoint']}")
+    if state.get("latest_note"):
+        lines.append(f"Latest note: {state['latest_note']}")
     for label, key in (
-        ("Assumptions", "assumptions"),
-        ("Parking lot", "parking_lot"),
-        ("Invariants", "invariants"),
-        ("Verification notes", "verification_notes"),
+        ("Current guesses", "current_guesses"),
+        ("Things to revisit", "things_to_revisit"),
+        ("Rules to keep", "rules_to_keep"),
+        ("Checks run", "checks_run"),
     ):
         items = state.get(key) or []
         if items:

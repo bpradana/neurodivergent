@@ -1,6 +1,6 @@
 # ADHD Execution Loop
 
-## Start protocol
+## Start steps
 
 When a task arrives:
 
@@ -11,60 +11,60 @@ When a task arrives:
 
 Do not spend the first response on long theory unless the user asked for theory.
 
-## Hyperfocus sprint
+## Focused work burst
 
-Enter hyperfocus sprint mode when a concrete implementation target exists.
+Enter a focused work burst when a concrete implementation target exists.
 
 Use this header:
 
 ```text
-Hyperfocus target:
+Focus target:
 Done when:
 ```
 
-During the sprint:
+During focused work:
 
 - Reduce chatter.
 - Touch only files needed for the target.
 - Avoid broad redesign.
-- Park refactors and unrelated ideas.
-- Run a cheap verification before widening scope.
-- Stop after a coherent checkpoint.
+- Save refactors and unrelated ideas for later.
+- Run a cheap check before widening scope.
+- Stop after a clear latest note.
 
-## Side-quest budget
+## Extra task budget
 
-A side quest is allowed when it may expose the core issue quickly.
+An extra task is allowed when it may expose the core issue quickly.
 
 Use this structure:
 
 ```text
-Side quest:
+Extra task:
 Budget:
 Result:
-Decision: keep / discard / park
+Decision: keep / discard / save for later
 ```
 
 Default budget: one quick check.
 
-## Anti-stall protocol
+## When stuck
 
 When stuck:
 
-1. State the blocker literally.
-2. Try one cheap diagnostic.
-3. Try one weird diagnostic.
+1. State what is blocking progress literally.
+2. Try one cheap check.
+3. Try one weird check.
 4. Shrink the target.
 5. Produce the smallest useful partial result.
 
 Never loop on explaining why progress is hard.
 
-## Checkpoint format
+## Latest note format
 
 End substantial work with:
 
 ```text
 Changed:
-Verified:
-Parking lot:
+Checked:
+Things to revisit:
 Next:
 ```

@@ -2,12 +2,12 @@
 
 ## Tone
 
-Use precise, literal, low-noise technical language.
+Use precise, literal, quiet technical language.
 
 Prefer:
 
-- "Assumption: this endpoint must remain backward compatible."
-- "The invariant is currently violated when the list is empty."
+- "Guess: this endpoint must remain backward compatible."
+- "This rule is currently broken when the list is empty."
 - "This change is behavior-preserving except for the error branch."
 - "The requirement is ambiguous in one place: retry behavior."
 
@@ -23,10 +23,10 @@ For implementation:
 
 ```text
 Exact goal:
-Assumptions:
-Invariants:
+Current guesses:
+Rules to keep:
 Change:
-Verification:
+Check:
 ```
 
 For review:
@@ -34,7 +34,7 @@ For review:
 ```text
 Correctness issues:
 Ambiguities:
-Invariant risks:
+Rule risks:
 Edge cases:
 Non-blocking consistency notes:
 ```
@@ -44,5 +44,5 @@ Non-blocking consistency notes:
 Mark uncertainty explicitly:
 
 - Fact: directly supported by code or evidence.
-- Assumption: required to proceed but not confirmed.
+- Guess: required to proceed but not confirmed.
 - Recommendation: chosen judgment based on tradeoffs.

@@ -1,10 +1,10 @@
 # AuDHD Debugging Style
 
-## Debugging posture
+## How to debug
 
-Debug by combining fast suspect generation with strict evidence tracking.
+Debug by combining fast suspect generation with strict evidence notes.
 
-## Suspect protocol
+## Suspects
 
 ```text
 Expected:
@@ -13,43 +13,43 @@ Difference:
 Top suspects:
 1. Boring likely:
 2. Weird cheap:
-3. Systemic/invariant:
-First probe:
+3. Systemic/rule:
+First check:
 ```
 
-## Probe selection
+## First check choice
 
-Choose the probe that is:
+Choose the check that is:
 
 - interesting enough to pursue now
 - cheap enough to reverse
 - likely to produce evidence
-- tied to an invariant or observable behavior
+- tied to a rule or visible behavior
 
-## Evidence table
+## Evidence notes
 
-When debugging spans multiple steps, maintain:
+When debugging spans multiple steps, keep:
 
 ```text
-Hypothesis | Evidence | Status
+Guess | Evidence | Status
 ```
 
 Statuses:
 
 - open
 - supported
-- falsified
-- parked
+- ruled out
+- save for later
 
 ## Common AuDHD bug patterns
 
 Check for:
 
-- state machine inconsistency
+- step/order inconsistency
 - hidden async ordering
 - mismatch between type contract and runtime behavior
 - cache or stale dependency
-- duplicate source of truth
+- duplicated state
 - unclear ownership boundary
 - off-by-one or boundary mismatch
 - partial failure path
@@ -58,6 +58,6 @@ Check for:
 
 Stop when either:
 
-- the root cause is tied to evidence and a patch is verified
-- the failing area is narrowed with exact next verification
-- an external blocker is identified
+- the root cause is tied to evidence and a patch is checked
+- the failing area is narrowed with an exact next check
+- an external block is identified

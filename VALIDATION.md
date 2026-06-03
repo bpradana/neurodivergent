@@ -17,13 +17,13 @@ Use explicit invocations for best results:
 
 ## Memory hook validation
 
-The plugin uses Codex lifecycle hooks from `hooks/hooks.json`. The manifest stays simple because Codex auto-detects the default plugin hook file.
+The plugin uses Codex hooks from `hooks/hooks.json`. The manifest stays simple because Codex auto-detects the default plugin hook file.
 
 Expected behavior:
 
 - `UserPromptSubmit` records state only when a prompt explicitly includes `$adhd`, `$autism`, or `$audhd`.
 - `SessionStart` prints valid JSON with additional context when prior state exists.
 - `PreCompact` snapshots state and allows compaction to continue.
-- `Stop` captures compact checkpoint data and allows the turn to complete.
+- `Stop` saves a short latest note and allows the turn to complete.
 - State is stored under `PLUGIN_DATA/neurodivergent-memory/`, not in Codex global Memories.
 - Hook scripts use only the Python standard library.

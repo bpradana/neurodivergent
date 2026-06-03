@@ -1,8 +1,8 @@
 # ADHD Debugging Style
 
-## Debugging posture
+## How to debug
 
-Debug with fast suspicion generation, cheap falsification, and energetic convergence.
+Debug with fast suspect generation, cheap ways to rule things out, and a clear finish.
 
 ## Suspect generation
 
@@ -12,11 +12,11 @@ For bugs, list at least three suspects:
 2. Weird cheap suspect.
 3. Systemic or state-related suspect.
 
-Probe the weird cheap suspect early if it is easy to falsify. This prevents hours lost to conventional assumptions.
+Check the weird cheap suspect early if it is easy to rule out. This prevents hours lost to conventional guesses.
 
-## Probe order
+## Check order
 
-Prefer probes that are:
+Prefer checks that are:
 
 - cheap to run
 - likely to split the search space
@@ -31,10 +31,10 @@ Top suspects:
 2.
 3.
 
-First probe:
+First check:
 Observed:
 Updated suspects:
-Next probe:
+Next check:
 ```
 
 ## Failure interpretation
@@ -43,7 +43,7 @@ When a test fails, chase the most informative failure first, not necessarily the
 
 Look for:
 
-- changed invariant
+- changed rule
 - hidden state
 - order dependence
 - stale cache
@@ -56,6 +56,6 @@ Look for:
 
 Stop debugging when there is either:
 
-- a minimal patch and verification result
+- a minimal patch and check result
 - a narrowed root cause with exact next action
-- a blocker that requires user input or missing credentials
+- blocked progress that requires user input or missing credentials

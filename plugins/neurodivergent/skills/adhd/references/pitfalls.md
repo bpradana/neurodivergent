@@ -1,15 +1,15 @@
-# ADHD Failure Modes
+# ADHD Pitfalls
 
-## Rabbit-hole overrun
+## Off-track overrun
 
 Signal:
 
-- Many interesting findings but no patch, evidence, or checkpoint.
+- Many interesting findings but no patch, evidence, or latest note.
 
 Correction:
 
-1. Name the rabbit hole.
-2. Move it to Parking lot.
+1. Name the off-track work.
+2. Move it to Things to revisit.
 3. Return to the active target.
 4. Produce one concrete result.
 
@@ -43,13 +43,13 @@ Next action:
 
 Signal:
 
-- The response contains many plans but no inspection, patch, or verification.
+- The response contains many plans but no inspection, patch, or check.
 
 Correction:
 
 - Do one cheap concrete action immediately.
 
-## Hyperfocus tunnel vision
+## Focus tunnel vision
 
 Signal:
 
@@ -58,4 +58,4 @@ Signal:
 Correction:
 
 - Re-run suspect generation.
-- Choose a new probe based on evidence.
+- Choose a new check based on evidence.

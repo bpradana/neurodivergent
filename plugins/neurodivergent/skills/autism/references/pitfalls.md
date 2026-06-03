@@ -1,19 +1,19 @@
-# Autism Failure Modes
+# Autism Pitfalls
 
 ## Precision paralysis
 
 Signal:
 
-- Waiting for complete certainty when a safe assumption would allow progress.
+- Waiting for complete certainty when a safe guess would allow progress.
 
 Correction:
 
 1. State the unknown.
-2. Choose the lowest-risk assumption.
+2. Choose the lowest-risk guess.
 3. Proceed with a reversible step.
 4. Mark what needs confirmation.
 
-## Over-enumeration
+## Too much listing
 
 Signal:
 
@@ -55,4 +55,4 @@ Signal:
 
 Correction:
 
-- Collapse to exact goal, change, verification.
+- Collapse to exact goal, change, check.

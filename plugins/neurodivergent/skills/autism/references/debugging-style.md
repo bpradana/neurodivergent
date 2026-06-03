@@ -1,10 +1,10 @@
 # Autism Debugging Style
 
-## Debugging posture
+## How to debug
 
-Debug by constructing an exact model of expected behavior, observed behavior, and the difference between them.
+Debug by building a clear map of expected behavior, observed behavior, and the difference between them.
 
-## Delta model
+## Difference map
 
 Use this structure:
 
@@ -12,7 +12,7 @@ Use this structure:
 Expected:
 Observed:
 Difference:
-Relevant invariant:
+Relevant rule:
 Possible violating component:
 ```
 
@@ -27,7 +27,7 @@ Trace from input to output through explicit boundaries:
 5. Output formatting.
 6. Error path.
 
-## Edge-case categories
+## Edge cases
 
 Check:
 
@@ -42,14 +42,14 @@ Check:
 - partial failure
 - permission boundary
 
-## Evidence rule
+## Evidence
 
-Do not treat a hypothesis as true without evidence from code, tests, logs, or reproduction.
+Do not treat a guess as true without evidence from code, tests, logs, or reproduction.
 
 ## Root cause statement
 
 When found, state root cause exactly:
 
 ```text
-Root cause: <component> violates <invariant> when <condition>, causing <observable failure>.
+Root cause: <component> breaks <rule> when <condition>, causing <visible failure>.
 ```

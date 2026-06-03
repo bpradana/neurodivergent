@@ -1,4 +1,4 @@
-# AuDHD Failure Modes
+# AuDHD Pitfalls
 
 ## Branch explosion
 
@@ -8,23 +8,23 @@ Signal:
 
 Correction:
 
-1. Re-state acceptance criteria.
+1. Re-state success criteria.
 2. Pick one reversible branch.
-3. Park the rest.
+3. Save the rest for later.
 
 ## Precision paralysis
 
 Signal:
 
-- Correctness concerns block any implementation even though a safe assumption exists.
+- Correctness concerns block any implementation even though a safe guess exists.
 
 Correction:
 
 1. Name the unknown.
-2. Lock the safest assumption.
+2. Lock the safest guess.
 3. Proceed with a small reversible change.
 
-## Hyperfocus drift
+## Focus drift
 
 Signal:
 
@@ -33,8 +33,8 @@ Signal:
 Correction:
 
 - Compare current work against `Done when`.
-- Park drift.
-- Return to the smallest verifiable patch.
+- Save drift for later.
+- Return to the smallest patch that can be checked.
 
 ## Consistency refactor trap
 
@@ -45,7 +45,7 @@ Signal:
 Correction:
 
 - Patch the target first.
-- Put consistency work in Parking lot.
+- Put consistency work in Things to revisit.
 - Only continue if consistency is required for correctness.
 
 ## Ambiguity overload
@@ -56,4 +56,4 @@ Signal:
 
 Correction:
 
-- Convert uncertainty into one assumption and one verification step.
+- Convert uncertainty into one guess and one check.
